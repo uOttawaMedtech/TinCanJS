@@ -606,10 +606,10 @@
             "LRS queryStatements with combinations of agent, verb, object, limit filters",
             function ( assert ) {
 
-                QUnit.assert.equalsStatementCount = function(query, expectedCount, message) {
+                QUnit.assert.equalsStatementCount = function(query, expectedCountIfNoLimit, message) {
                     var result = lrs.queryStatements(query);
 
-                    QUnit.push(result.statementsResult.statements.length === expectedCount, result.statementsResult.statements.length, expectedCount, message);
+                    QUnit.push(result.statementsResult.statements.length === expectedCountIfNoLimit, result.statementsResult.statements.length, expectedCountIfNoLimit, message);
                 }
 
                 // agent + verb
