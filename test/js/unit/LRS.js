@@ -626,6 +626,90 @@
                     activities.length,
                     "The agent, verb query returned the expected amount of statements"
                 );
+
+                // verb + object
+                assert.equalsStatementCount({
+                        params: {
+                            verb: new TinCan.Verb({
+                                id: verbs[0]
+                            }),
+                            activity: new TinCan.Activity({
+                                id: activities[0]
+                            })
+                        }
+                    },
+                    actors.length,
+                    "The verb, object query returned the expected amount of statements"
+                );
+
+                // agent + object
+                assert.equalsStatementCount({
+                        params: {
+                            agent: new TinCan.Agent({
+                                mbox: actors[0]
+                            }),
+                            activity: new TinCan.Activity({
+                                id: activities[0]
+                            })
+                        }
+                    },
+                    verbs.length,
+                    "The agent, object query returned the expected amount of statements"
+                );
+
+                // object only
+                assert.equalsStatementCount({
+                        params: {
+                            activity: new TinCan.Activity({
+                                id: activities[0]
+                            })
+                        }
+                    },
+                    actors.length * verbs.length,
+                    "The object only query returned the expected amount of statements"
+                );
+
+                // agent only
+                assert.equalsStatementCount({
+                        params: {
+                            agent: new TinCan.Agent({
+                                mbox: actors[0]
+                            })
+                        }
+                    },
+                    verbs.length * activities.length,
+                    "The agent only query returned the expected amount of statements"
+                );
+
+                // verb only
+                assert.equalsStatementCount({
+                        params: {
+                            verb: new TinCan.Verb({
+                                id: verbs[0]
+                            })
+                        }
+                    },
+                    actors.length * activities.length,
+                    "The verb only query returned the expected amount of statements"
+                );
+
+                // agent + verb + activity
+                assert.equalsStatementCount({
+                        params: {
+                            agent: new TinCan.Agent({
+                                mbox: actors[0]
+                            }),
+                            verb: new TinCan.Verb({
+                                id: verbs[0]
+                            }),
+                            activity: new TinCan.Activity({
+                                id: activities[0]
+                            })
+                        }
+                    },
+                    1,
+                    "The agent + verb + activity query returned the expected amount of statements"
+                );
             }
         );
 
