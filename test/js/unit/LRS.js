@@ -603,7 +603,7 @@
         // test querying for the statements in each API version
 
         test(
-            "LRS queryStatements with combinations of agent, verb, object, limit filters",
+            "LRS queryStatements with combinations of agent, verb, object filters",
             function ( assert ) {
 
                 QUnit.assert.equalStatementCount = function(query, expectedCountIfNoLimit, message) {
