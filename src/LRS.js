@@ -807,35 +807,52 @@ TinCan client library
                     cfg.url = requestResult.more;
                     requestMore = this.moreStatements(cfg);
 
-                    requestResult.statements = requestMore.statementsResult.statements;
-                    requestResult.more = requestMore.more;
+                    if (requestMore.err === null) {
+                        requestResult.statements = requestMore.statementsResult.statements;
+                        requestResult.more = requestMore.more || null;
+                    } else {
+                        requestResult.err = requestMore.err;
+                        break;
+                    }
                 }
             } else if (originalLimit > 0 && requestResult.statements.length <= originalLimit && requestResult.more !== null) {
                 // reissue the original request without the limit filter
                 cfg = requestCfg;
                 delete cfg.params.limit;
-
-                requestResult = this.sendRequest(cfg);
-                requestResult.statementsResult = TinCan.StatementsResult.fromJSON(requestResult.responseText);
-                requestResult.statements = requestResult.statementsResult.statements;
-
-                cfg = {};
-
-                numCalls += 1;
-
-                while(requestResult.statements.length <= originalLimit && requestResult.more !== null) {
-                    numCalls += 1;
-                    cfg.url = requestResult.more;
-                    requestMore = this.moreStatements(cfg);
-
-                    requestResult.statements.concat(requestMore.statementsResult.statements);
-                    requestResult.more = requestMore.more;
+                if (typeof cfg.callback !== "undefined") {
+                    delete cfg.callback;
                 }
 
-                // discard the statements over the limit
-                while(requestResult.statements.length > originalLimit) {
-                    // remove a statement from the end of the array
-                    requestResult.statements.pop();
+                requestResult = this.sendRequest(cfg);
+
+                if (requestResult.err === null) {
+
+                    requestResult.statementsResult = TinCan.StatementsResult.fromJSON(requestResult.xhr.responseText);
+                    requestResult.statements = requestResult.statementsResult.statements;
+                    requestResult.more = requestResult.statementsResult.more;
+
+                    cfg = {};
+
+                    numCalls += 1;
+
+                    while(requestResult.statements.length <= originalLimit && requestResult.more !== null) {
+                        numCalls += 1;
+                        cfg.url = requestResult.more;
+                        requestMore = this.moreStatements(cfg);
+
+                        requestResult.statements = requestResult.statements.concat(requestMore.statementsResult.statements);
+                        requestResult.more = requestMore.statementsResult.more || null;
+                    }
+
+                    if (requestResult.statements.length > originalLimit) {
+                        this.log("Amount of statements returned exceeds the original limit (" + requestResult.statements.length + " > " + originalLimit + ")");
+                    }
+
+                    // discard the statements over the limit
+                    while(requestResult.statements.length > originalLimit) {
+                        // remove a statement from the end of the array
+                        requestResult.statements.pop();
+                    }
                 }
             }
 
