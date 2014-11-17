@@ -42,6 +42,7 @@
                 version:  "0.9"
             }
         },
+        statementCountTestDelay: 0, // in seconds; some LRSes take minutes to have new statements indexed and ready for a query
         firstFound: {
             recordStore: {
                 endpoint: "http://cloud.scorm.com/tc/public/",
