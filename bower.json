@@ -4,7 +4,7 @@
   "homepage": "http://rusticisoftware.github.com/TinCanJS/",
   "authors": [
     "Brian J. Miller <brian.miller@scorm.com>",
-    "Pascal L. Laliberté <plaliberte@uOttawa.ca>"
+    "Pascal Laliberté <plaliberte@uOttawa.ca>"
   ],
   "description": "A fork of the original Tin Can API library, adapted to query from Saltbox's Wax LRS",
   "keywords": [
