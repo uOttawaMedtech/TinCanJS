@@ -1,8 +1,8 @@
 {
   "name": "tincanjs",
-  "description": "Tin Can API Library",
+  "description": "A fork of the original Tin Can API Library, adapted to query from Saltbox's Wax LRS",
   "version": "0.31.0",
-  "private": false,
+  "private": true,
   "main": "build/tincan-node.js",
   "directories": {
     "src": "src",
@@ -11,16 +11,20 @@
   "dependencies": {
     "xhr2": "0.0.7"
   },
-  "author": "Rustici Software <support@tincanapi.com>",
+  "author": "uOttawa Medtech <medtech@uottawa.ca>",
   "contributors": [
     {
       "name": "Brian J. Miller",
       "email": "brian.miller@tincanapi.com"
+    },
+    {
+      "name": "Pascal L. Laliberté",
+      "email": "plaliberte@uOttawa.ca"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/RusticiSoftware/TinCanJS.git"
+    "url": "https://github.com/uOttawaMedtech/TinCanJS.git"
   },
   "keywords": [
     "tincan",
@@ -30,7 +34,9 @@
     "lrs",
     "experienceapi",
     "experience api",
-    "xapi"
+    "xapi",
+    "wax lrs",
+    "waxlrs"
   ],
   "devDependencies": {
     "grunt": "0.4.4",

@@ -3,9 +3,10 @@
   "version": "0.31.0",
   "homepage": "http://rusticisoftware.github.com/TinCanJS/",
   "authors": [
-    "Brian J. Miller <brian.miller@scorm.com>"
+    "Brian J. Miller <brian.miller@scorm.com>",
+    "Pascal L. Laliberté <plaliberte@uOttawa.ca>"
   ],
-  "description": "A JavaScript library for talking Tin Can to the world.",
+  "description": "A fork of the original Tin Can API library, adapted to query from Saltbox's Wax LRS",
   "keywords": [
     "tincan",
     "tin can",
@@ -14,7 +15,9 @@
     "lrs",
     "experienceapi",
     "experience api",
-    "xapi"
+    "xapi",
+    "wax lrs",
+    "waxlrs"
   ],
   "license": "Apache 2.0",
   "main": [
